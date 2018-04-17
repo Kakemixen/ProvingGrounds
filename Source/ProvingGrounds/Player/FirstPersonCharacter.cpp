@@ -154,7 +154,6 @@ void AFirstPersonCharacter::OnFire()
 			}
 			else
 			{
-				UE_LOG(LogTemp, Warning, TEXT("FIRE"));
 				const FRotator SpawnRotation = GetControlRotation();
 				// MuzzleOffset is in camera space, so transform it to world space before offsetting from the character location to find the final muzzle position
 				const FVector SpawnLocation = ((FP_MuzzleLocation != nullptr) ? FP_MuzzleLocation->GetComponentLocation() : GetActorLocation()) + SpawnRotation.RotateVector(GunOffset);
