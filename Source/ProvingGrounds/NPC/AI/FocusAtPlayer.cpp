@@ -12,9 +12,8 @@ EBTNodeResult::Type UFocusAtPlayer::ExecuteTask(UBehaviorTreeComponent &OwnerCom
 
 	UBlackboardComponent* BlackboardComponent = OwnerComp.GetBlackboardComponent();
 
-	FVector FocusPoint = GetWorld()->GetFirstPlayerController()->GetPawn()->GetActorLocation();//BlackboardComponent->GetValueAsVector(PointKey.SelectedKeyName);
-	BlackboardComponent->SetValueAsVector(PointKey.SelectedKeyName, FocusPoint);
-	AI->SetFocalPoint(FocusPoint);
+	AActor* PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
+	AI->SetFocus(PlayerPawn);
 
 	return EBTNodeResult::Succeeded;
 }

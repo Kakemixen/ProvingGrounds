@@ -20,7 +20,7 @@ class PROVINGGROUNDS_API UFocusAtPlayer : public UBTTaskNode
 protected:
 
 	UPROPERTY(EditAnywhere, Category = "BlackboardKeys")
-		struct FBlackboardKeySelector PointKey;
+		struct FBlackboardKeySelector PlayerKey;
 	
 	
 };
