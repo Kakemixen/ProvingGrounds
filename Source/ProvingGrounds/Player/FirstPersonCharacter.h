@@ -98,6 +98,14 @@ protected:
 	 */
 	bool EnableTouchscreenMovement(UInputComponent* InputComponent);
 
+	void OnFire();
+
+	//needs to be set in BP
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	TSubclassOf<class AGunActor> FP_Gun_BP = nullptr;
+
+	class AGunActor* FP_Gun = nullptr;
+
 public:
 	/** Returns Mesh1P subobject **/
 	FORCEINLINE class USkeletalMeshComponent* GetMesh1P() const { return Mesh1P; }

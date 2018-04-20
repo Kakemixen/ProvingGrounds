@@ -39,20 +39,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
 	class UAnimMontage* FireAnimation;
 
+	/** Fires a projectile. */
+	void OnFire();
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
-
-	/** Fires a projectile. */
-	void OnFire();
 
 
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+ 
 private:
-	USkeletalMeshComponent * Mesh;
-	
+	UPROPERTY(EditAnywhere, Category = "Setup")
+	UAnimInstance * AnimInstance = nullptr;
 	
 };

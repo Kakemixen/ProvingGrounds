@@ -18,7 +18,7 @@ AGunActor::AGunActor()
 
 	// Create a gun mesh component
 	FP_Gun = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("FP_Gun"));
-	FP_Gun->SetOnlyOwnerSee(true);			// only the owning player will see this mesh
+	//FP_Gun->SetOnlyOwnerSee(true);			// only the owning player will see this mesh
 	FP_Gun->bCastDynamicShadow = false;
 	FP_Gun->CastShadow = false;
 	// FP_Gun->SetupAttachment(Mesh1P, TEXT("GripPoint"));
@@ -38,14 +38,6 @@ void AGunActor::BeginPlay()
 {
 	Super::BeginPlay();
 
-	Mesh = Cast<ACharacter>(GetOwner())->GetMesh();
-	if (!ensure(Mesh)) { return; }
-
-	//Attach gun mesh component to Skeleton, doing it here because the skeleton is not yet created in the constructor
-	FP_Gun->AttachToComponent(Mesh, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
-
-
-
 }
 
 // Called every frame
@@ -57,7 +49,6 @@ void AGunActor::Tick(float DeltaTime)
 
 void AGunActor::OnFire()
 {
-	if (!ensure(Mesh)) { return; }
 	// try and fire a projectile
 	if (ProjectileClass != NULL)
 	{
@@ -87,8 +78,6 @@ void AGunActor::OnFire()
 	// try and play a firing animation if specified
 	if (FireAnimation != NULL)
 	{
-		// Get the animation object for the arms mesh
-		UAnimInstance* AnimInstance = Mesh->GetAnimInstance();
 		if (AnimInstance != NULL)
 		{
 			AnimInstance->Montage_Play(FireAnimation, 1.f);
